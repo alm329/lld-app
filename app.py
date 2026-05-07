@@ -19,11 +19,11 @@ def load_data():
 
     with st.spinner("Laddar geodata..."):
 
-    kommun = gpd.read_file("kommun.shp", engine="pyogrio").to_crs("EPSG:3006")
-
-    lan = gpd.read_file("lan.shp", engine="pyogrio").to_crs("EPSG:3006")
-
-    distrikt = gpd.read_file("distrikt.gpkg", engine="pyogrio").to_crs("EPSG:3006")
+        kommun = gpd.read_file("kommun.shp", engine="pyogrio").to_crs("EPSG:3006")
+    
+        lan = gpd.read_file("lan.shp", engine="pyogrio").to_crs("EPSG:3006")
+    
+        distrikt = gpd.read_file("distrikt.gpkg", engine="pyogrio").to_crs("EPSG:3006")
 
     return kommun, lan, distrikt
 
