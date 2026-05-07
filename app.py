@@ -160,6 +160,7 @@ if st.button("Hämta information"):
     st.write(f"### Geografisk information")
     st.write(f"Landsdel: {landsdel}")
     st.write(f"Län: {lan_namn}")
+    st.write(f"Landskap: {landskap_namn}")
     st.write(f"Kommun: {kommun_namn}")
     
     st.write(f"Distrikt: {distrikt_namn}")
