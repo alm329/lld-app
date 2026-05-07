@@ -22,13 +22,15 @@ def load_data():
         kommun = gpd.read_file("kommun.shp", engine="pyogrio").to_crs("EPSG:3006")
     
         lan = gpd.read_file("lan.shp", engine="pyogrio").to_crs("EPSG:3006")
+
+        landskap = gpd.read_file("landskap.geojson", engine="pyogrio").to_crs("EPSG:3006")
     
         distrikt = gpd.read_file("distrikt.gpkg", engine="pyogrio").to_crs("EPSG:3006")
 
-    return kommun, lan, distrikt
+    return kommun, lan, landskap, distrikt
 
 
-kommun, lan, distrikt = load_data()
+kommun, lan, landskap, distrikt = load_data()
 
 # =========================
 # INPUT
@@ -74,6 +76,7 @@ if st.button("Hämta information"):
     # =========================
     kommun_hit = spatial_lookup(kommun)
     lan_hit = spatial_lookup(lan)
+    landskap_hit = spatial_lookup(landskap)
     distrikt_hit = spatial_lookup(distrikt)
 
     # =========================
@@ -82,6 +85,19 @@ if st.button("Hämta information"):
     kommun_namn = kommun_hit["KnNamn"] if kommun_hit is not None else None
 
     lan_namn = lan_hit["LnNamn"] if lan_hit is not None else None
+
+    landskap_namn = None
+
+    if landskap_hit is not None:
+    
+        # testar vanliga kolumnnamn
+        for col in landskap_hit.index:
+    
+            c = col.lower()
+    
+            if "namn" in c or "name" in c:
+                landskap_namn = landskap_hit[col]
+                break
 
     distrikt_namn = (
         distrikt_hit["distriktsnamn"]
@@ -99,35 +115,38 @@ if st.button("Hämta information"):
     # LANDSDEL
     # =========================
     landsdel_map = {
-
+    
         # Götaland
         "Skåne": "Götaland",
         "Blekinge": "Götaland",
-        "Hallands": "Götaland",
-        "Jönköpings": "Götaland",
-        "Kalmar": "Götaland",
-        "Västra Götalands": "Götaland",
-        "Östergötlands": "Götaland",
-        "Gotlands": "Götaland",
-
+        "Halland": "Götaland",
+        "Småland": "Götaland",
+        "Västergötland": "Götaland",
+        "Östergötland": "Götaland",
+        "Gotland": "Götaland",
+        "Bohuslän": "Götaland",
+        "Dalsland": "Götaland",
+    
         # Svealand
-        "Stockholms": "Svealand",
-        "Uppsala": "Svealand",
-        "Södermanlands": "Svealand",
-        "Örebro": "Svealand",
-        "Västmanlands": "Svealand",
-        "Dalarnas": "Svealand",
-        "Värmlands": "Svealand",
-
+        "Uppland": "Svealand",
+        "Södermanland": "Svealand",
+        "Västmanland": "Svealand",
+        "Närke": "Svealand",
+        "Värmland": "Svealand",
+        "Dalarna": "Svealand",
+    
         # Norrland
-        "Gävleborgs": "Norrland",
-        "Västernorrlands": "Norrland",
-        "Jämtlands": "Norrland",
-        "Västerbottens": "Norrland",
-        "Norrbottens": "Norrland"
+        "Gästrikland": "Norrland",
+        "Hälsingland": "Norrland",
+        "Medelpad": "Norrland",
+        "Ångermanland": "Norrland",
+        "Jämtland": "Norrland",
+        "Västerbotten": "Norrland",
+        "Norrbotten": "Norrland",
+        "Lappland": "Norrland"
     }
 
-    landsdel = landsdel_map.get(lan_namn)
+landsdel = landsdel_map.get(landskap_namn)
 
     # =========================
     # OUTPUT
@@ -139,8 +158,9 @@ if st.button("Hämta information"):
     st.write(f"Y: {y:.2f}")
 
     st.write(f"### Geografisk information")
-    st.write(f"Kommun: {kommun_namn}")
+    st.write(f"Landsdel: {landsdel}")
     st.write(f"Län: {lan_namn}")
+    st.write(f"Kommun: {kommun_namn}")
+
     st.write(f"Distrikt: {distrikt_namn}")
     st.write(f"Distriktskod: {distrikt_kod}")
-    st.write(f"Landsdel: {landsdel}")
