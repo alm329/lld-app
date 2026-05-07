@@ -17,11 +17,13 @@ st.write("Konvertera WGS84 → SWEREF99 TM + geografisk information")
 @st.cache_data
 def load_data():
 
-    kommun = gpd.read_file("kommun.shp").to_crs("EPSG:3006")
+    with st.spinner("Laddar geodata..."):
 
-    lan = gpd.read_file("lan.shp").to_crs("EPSG:3006")
+    kommun = gpd.read_file("kommun.shp", engine="pyogrio").to_crs("EPSG:3006")
 
-    distrikt = gpd.read_file("distrikt.gpkg").to_crs("EPSG:3006")
+    lan = gpd.read_file("lan.shp", engine="pyogrio").to_crs("EPSG:3006")
+
+    distrikt = gpd.read_file("distrikt.gpkg", engine="pyogrio").to_crs("EPSG:3006")
 
     return kommun, lan, distrikt
 
