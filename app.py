@@ -146,21 +146,21 @@ if st.button("Hämta information"):
         "Lappland": "Norrland"
     }
 
-    landsdel = landsdel_map.get(landskap_namn)
+landsdel = landsdel_map.get(landskap_namn)
 
-    # =========================
-    # OUTPUT
-    # =========================
-    st.subheader("Resultat")
+# =========================
+# OUTPUT
+# =========================
+st.subheader("Resultat")
 
-    st.write(f"### SWEREF99 TM")
-    st.write(f"X: {x:.2f}")
-    st.write(f"Y: {y:.2f}")
+st.write(f"### SWEREF99 TM")
+st.write(f"X: {x:.2f}")
+st.write(f"Y: {y:.2f}")
 
-    st.write(f"### Geografisk information")
-    st.write(f"Landsdel: {landsdel}")
-    st.write(f"Län: {lan_namn}")
-    st.write(f"Kommun: {kommun_namn}")
+st.write(f"### Geografisk information")
+st.write(f"Landsdel: {landsdel}")
+st.write(f"Län: {lan_namn}")
+st.write(f"Kommun: {kommun_namn}")
 
-    st.write(f"Distrikt: {distrikt_namn}")
-    st.write(f"Distriktskod: {distrikt_kod}")
+st.write(f"Distrikt: {distrikt_namn}")
+st.write(f"Distriktskod: {distrikt_kod}")
