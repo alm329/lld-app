@@ -146,7 +146,7 @@ if st.button("Hämta information"):
         "Lappland": "Norrland"
     }
 
-landsdel = landsdel_map.get(landskap_namn)
+    landsdel = landsdel_map.get(landskap_namn)
 
     # =========================
     # OUTPUT
