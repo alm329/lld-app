@@ -90,19 +90,19 @@ if st.button("Hämta information"):
     
     if landskap_hit is not None:
 
-    # GeoJSON-fält
-    if "landskap" in landskap_hit.index:
-        landskap_namn = landskap_hit["landskap"]
-
-    # fallback
-    else:
-        for col in landskap_hit.index:
-
-            c = col.lower()
-
-            if "namn" in c or "name" in c:
-                landskap_namn = landskap_hit[col]
-                break
+        # GeoJSON-fält
+        if "landskap" in landskap_hit.index:
+            landskap_namn = landskap_hit["landskap"]
+    
+        # fallback
+        else:
+            for col in landskap_hit.index:
+    
+                c = col.lower()
+    
+                if "namn" in c or "name" in c:
+                    landskap_namn = landskap_hit[col]
+                    break
 
     distrikt_namn = (
         distrikt_hit["distriktsnamn"]
