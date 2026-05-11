@@ -192,7 +192,6 @@ if run_lookup:
 
         except Exception as e:
             st.error("Kunde inte hämta information. Kontrollera att koordinaterna är giltiga (t.ex. 57.987, 14.854).")
-            st.exception(e)  # Ta bort i produktion
 
 # =========================
 # VISA RESULTAT
