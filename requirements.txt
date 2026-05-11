@@ -3,3 +3,6 @@ geopandas
 pyproj
 shapely
 pyogrio
+folium
+streamlit-folium
+pandas
