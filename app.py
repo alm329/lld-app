@@ -268,15 +268,29 @@ if st.session_state.result:
 
     with map_col:
         m = folium.Map(location=[lat, lon], zoom_start=12, tiles="CartoDB positron")
-        folium.CircleMarker(
+
+        pin_html = """
+        <div style="
+            width: 24px;
+            height: 24px;
+            background: #2563eb;
+            border: 2px solid white;
+            border-radius: 50% 50% 50% 0;
+            transform: rotate(-45deg);
+            box-shadow: 0 2px 6px rgba(0,0,0,0.35);
+        "></div>
+        """
+
+        folium.Marker(
             location=[lat, lon],
-            radius=8,
-            color="#2563eb",
-            fill=True,
-            fill_color="#2563eb",
-            fill_opacity=0.9,
-            tooltip=f"{lat}, {lon}"
+            tooltip=f"{lat}, {lon}",
+            icon=folium.DivIcon(
+                html=pin_html,
+                icon_size=(24, 24),
+                icon_anchor=(12, 24),
+            )
         ).add_to(m)
+
         st_folium(m, width=None, height=500, key="map")
 
 
