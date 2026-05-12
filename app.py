@@ -268,7 +268,15 @@ if st.session_state.result:
 
     with map_col:
         m = folium.Map(location=[lat, lon], zoom_start=12, tiles="CartoDB positron")
-        folium.Marker([lat, lon], tooltip=f"{lat}, {lon}").add_to(m)
+        folium.CircleMarker(
+            location=[lat, lon],
+            radius=8,
+            color="#2563eb",
+            fill=True,
+            fill_color="#2563eb",
+            fill_opacity=0.9,
+            tooltip=f"{lat}, {lon}"
+        ).add_to(m)
         st_folium(m, width=None, height=500, key="map")
 
 
