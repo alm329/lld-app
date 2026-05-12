@@ -108,7 +108,7 @@ st.title("LLD Lookup")
 st.markdown("""
 <div class="info-box">
     Det här verktyget låter dig slå upp geografisk information för en valfri plats i Sverige.
-    Klistra in eller skriv in koordinater (t.ex. från Google Maps) i fälten nedan och klicka på
+    Klistra in koordinater i WGS84-format (t.ex. 57.987, 14.854 från Google Maps) i fälten nedan och klicka på 
     <b><em>Hämta</em></b> – du får då:<br><br>
     Koordinater omvandlade till SWEREF99 TM (det svenska standardkoordinatsystemet)<br>
     Landsdel, landskap, län, kommun och distrikt för punkten<br>
